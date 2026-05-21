@@ -1,0 +1,88 @@
+<h2>你更喜欢哪种绿色线条 + 动感的呈现方式？</h2>
+<p class="subtitle">全屏沉浸布局下的 3 种视觉风格方向</p>
+
+<div class="cards">
+  <div class="card" data-choice="neon" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0a0a0a;padding:36px 28px;text-align:center;min-height:200px">
+        <div style="width:140px;height:140px;background:linear-gradient(135deg,#0d1117,#161b22);margin:0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 0 30px rgba(29,185,84,0.3), 0 0 60px rgba(29,185,84,0.1);border:2px solid #1db954;animation:pulse 2s infinite">♪</div>
+        <div style="color:#fff;margin-top:20px;font-weight:bold;font-size:18px">Song Title</div>
+        <div style="color:#888;font-size:13px;margin-top:4px">Artist Name</div>
+        <div style="margin:20px auto;width:75%;height:3px;background:#222;border-radius:3px;position:relative;box-shadow:0 0 8px rgba(29,185,84,0.3)">
+          <div style="width:35%;height:100%;background:linear-gradient(90deg,#1db954,#1ed760);border-radius:3px;box-shadow:0 0 12px rgba(29,185,84,0.5)"></div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:32px">
+          <span style="color:#1db954;font-size:22px;text-shadow:0 0 8px rgba(29,185,84,0.5)">⏮</span>
+          <span style="color:#1db954;font-size:28px;text-shadow:0 0 12px rgba(29,185,84,0.6)">▶</span>
+          <span style="color:#1db954;font-size:22px;text-shadow:0 0 8px rgba(29,185,84,0.5)">⏭</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>霓虹发光</h3>
+      <p>绿色光晕 + 发光按钮 + 呼吸动效。赛博感强烈，夜晚听歌氛围满分</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="geometric" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0a0a0a;padding:36px 28px;text-align:center;min-height:200px">
+        <div style="width:140px;height:140px;background:#0d1117;margin:0 auto;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:48px;border:2px solid transparent;position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#1db954,transparent);animation:slide 2s linear infinite"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#1db954,transparent);animation:slide 2s linear infinite 0.5s"></div>
+          <span>♪</span>
+        </div>
+        <div style="color:#fff;margin-top:20px;font-weight:bold;font-size:18px">Song Title</div>
+        <div style="color:#888;font-size:13px;margin-top:4px">Artist Name</div>
+        <div style="margin:20px auto;width:75%;height:2px;background:#222;border-radius:0;overflow:hidden">
+          <div style="width:35%;height:100%;background:#1db954;border-radius:0;position:relative">
+            <div style="position:absolute;right:0;top:-3px;width:8px;height:8px;background:#1db954;transform:rotate(45deg)"></div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:32px;font-size:22px">
+          <span style="color:#1db954">⏮</span>
+          <span style="color:#1db954;font-size:26px">▶</span>
+          <span style="color:#1db954">⏭</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>几何线条</h3>
+      <p>锐利边框 + 扫光线条 + 菱形滑块。干练利落，现代极简工业风</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="wave" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0a0a0a;padding:36px 28px;text-align:center;min-height:200px">
+        <div style="width:140px;height:140px;background:linear-gradient(135deg,#0d1117 0%,#0a1628 100%);margin:0 auto;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:48px;border:1px solid rgba(29,185,84,0.3)">
+          <div style="position:relative;display:flex;align-items:flex-end;gap:3px;height:32px">
+            <div style="width:3px;height:12px;background:#1db954;border-radius:2px;animation:eq1 0.8s ease infinite"></div>
+            <div style="width:3px;height:24px;background:#1db954;border-radius:2px;animation:eq2 0.8s ease infinite 0.2s"></div>
+            <div style="width:3px;height:32px;background:#1db954;border-radius:2px;animation:eq3 0.8s ease infinite 0.1s"></div>
+            <div style="width:3px;height:18px;background:#1db954;border-radius:2px;animation:eq1 0.8s ease infinite 0.3s"></div>
+            <div style="width:3px;height:8px;background:#1db954;border-radius:2px;animation:eq2 0.8s ease infinite 0.4s"></div>
+          </div>
+        </div>
+        <div style="color:#fff;margin-top:20px;font-weight:bold;font-size:18px">Song Title</div>
+        <div style="color:#888;font-size:13px;margin-top:4px">Artist Name</div>
+        <div style="margin:20px auto;width:75%;height:3px;background:#222;border-radius:3px;overflow:hidden">
+          <div style="width:35%;height:100%;background:linear-gradient(90deg,#1db954,#1ed760);border-radius:3px"></div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:32px">
+          <span style="color:#1db954;font-size:22px">⏮</span>
+          <span style="color:#1db954;font-size:26px;display:inline-flex;align-items:center;gap:2px">
+            <span style="width:3px;height:14px;background:#1db954;border-radius:1px"></span>
+            <span style="width:3px;height:20px;background:#1db954;border-radius:1px"></span>
+            <span style="width:3px;height:10px;background:#1db954;border-radius:1px"></span>
+          </span>
+          <span style="color:#1db954;font-size:22px">⏭</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>音频律动</h3>
+      <p>频谱跳动 + 波形渐变 + 绿色均衡器。让音乐"看得见"，动感由内而外</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-studio-green: #1db954;
+  --color-studio-green-light: #1ed760;
+}
+
+/* Hide scrollbar */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Rotation animation for cover halo */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* Pulse glow for play button */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(29,185,84,0.4); }
+  50% { box-shadow: 0 0 35px rgba(29,185,84,0.7); }
+}
+
+/* Spectrum equalizer bars */
+@keyframes eq1 { 0%,100%{height:8px} 50%{height:20px} }
+@keyframes eq2 { 0%,100%{height:14px} 50%{height:6px} }
+@keyframes eq3 { 0%,100%{height:6px} 50%{height:18px} }
+
+/* Slide up animation */
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Fade in */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
