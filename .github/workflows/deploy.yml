@@ -23,6 +23,8 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run build
+        env:
+          BASE_URL: /My_Studio/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
