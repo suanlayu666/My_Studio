@@ -1,73 +1,54 @@
-# React + TypeScript + Vite
+# My Studio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+自用音乐播放器，黑色主题 × 绿色霓虹线条 × 音频律动特效。
 
-Currently, two official plugins are available:
+> 暂时未接入音乐平台 API，后续会更新。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 在线使用
 
-## React Compiler
+打开网页，直接把本地音乐文件或文件夹拖入窗口即可播放。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 本地部署
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone <https://github.com/suanlayu666/My_Studio>
+cd <My_Studio>
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+把音乐文件按歌单放入 `public/music/` 目录：
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+public/music/
+├── 摇滚/
+│   ├── song1.mp3
+│   └── song2.flac
+└── 爵士/
+    └── track.mp3
+```
+
+子文件夹自动识别为歌单。
+
+```bash
+npm run dev
+```
+
+打开 `http://localhost:5173`，音乐自动加载。
+
+## 安装为桌面应用（PWA）
+
+Chrome / Edge 打开网页，点击地址栏 ⊕ 图标或左下角「安装为桌面应用」。
+
+## 功能
+
+- 本地音频播放（mp3 / flac / wav / ogg / m4a）
+- ID3 标签解析（标题、歌手、专辑、封面）
+- 文件夹拖拽导入，子文件夹自动识别为歌单
+- 暗色 / 亮色主题切换
+- 绿色霓虹光环 + 音频频谱实时律动
+- 收藏歌单
+- PWA 桌面应用
+
+## 技术栈
+
+React · TypeScript · Tailwind CSS · Vite · music-metadata · PWA
