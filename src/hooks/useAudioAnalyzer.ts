@@ -21,38 +21,36 @@ export function useAudioAnalyzer({ audioEl, isPlaying }: AnalyzerInput) {
 
   // One-time setup: create AudioContext + analyser + MediaElementSourceNode
   useEffect(() => {
-    if (!audioEl || sourceCreatedRef.current) return;
+    if (!audioEl) return;
+    if (sourceCreatedRef.current) return;
+
+    let ctx: AudioContext;
+    let analyser: AnalyserNode;
+    let source: MediaElementAudioSourceNode;
 
     try {
-      const ctx = new AudioContext();
-      const analyser = ctx.createAnalyser();
+      ctx = new AudioContext();
+      analyser = ctx.createAnalyser();
       analyser.fftSize = FFT_SIZE;
       analyser.smoothingTimeConstant = 0.5;
-
-      const source = ctx.createMediaElementSource(audioEl);
-      source.connect(analyser);
-      analyser.connect(ctx.destination);
-
-      ctxRef.current = ctx;
-      analyserRef.current = analyser;
-      sourceRef.current = source;
-      sourceCreatedRef.current = true;
+      source = ctx.createMediaElementSource(audioEl);
     } catch {
-      // Audio element already has a source connected (StrictMode double-fire)
-      // The previous connection still works — just reuse the existing context
+      // Source already connected (StrictMode or hot reload). Reuse from refs.
+      ctx = ctxRef.current!;
+      analyser = analyserRef.current!;
+      source = sourceRef.current!;
+      if (!ctx || !analyser || !source) return;
     }
 
-    return () => {
-      if (sourceRef.current) {
-        try { sourceRef.current.disconnect(); } catch {}
-        sourceRef.current = null;
-      }
-      if (ctxRef.current && ctxRef.current.state !== 'closed') {
-        ctxRef.current.close();
-        ctxRef.current = null;
-      }
-      sourceCreatedRef.current = false;
-    };
+    source.connect(analyser);
+    analyser.connect(ctx.destination);
+
+    ctxRef.current = ctx;
+    analyserRef.current = analyser;
+    sourceRef.current = source;
+    sourceCreatedRef.current = true;
+
+    // NO cleanup — preserve across StrictMode double-fire
   }, [audioEl]);
 
   // rAF loop: read frequency data while playing
@@ -75,16 +73,11 @@ export function useAudioAnalyzer({ audioEl, isPlaying }: AnalyzerInput) {
         return;
       }
 
-      // Resume AudioContext if suspended (browser autoplay policy)
-      if (analyserRef.current && ctxRef.current) {
-        if (ctxRef.current.state === 'suspended') {
-          ctxRef.current.resume();
-        }
-        analyserRef.current.getByteFrequencyData(dataArray);
-      } else {
-        rafRef.current = requestAnimationFrame(tick);
-        return;
+      if (ctxRef.current!.state === 'suspended') {
+        ctxRef.current!.resume();
       }
+
+      analyserRef.current!.getByteFrequencyData(dataArray);
 
       let bassSum = 0, midSum = 0, trebleSum = 0, totalSum = 0;
       let bassCount = 0, midCount = 0, trebleCount = 0;
@@ -122,4 +115,17 @@ export function useAudioAnalyzer({ audioEl, isPlaying }: AnalyzerInput) {
       cancelAnimationFrame(rafRef.current);
     };
   }, [isPlaying, dispatch]);
+
+  // Final cleanup on unmount only
+  useEffect(() => {
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      try { sourceRef.current?.disconnect(); } catch {}
+      sourceRef.current = null;
+      analyserRef.current = null;
+      if (ctxRef.current?.state !== 'closed') ctxRef.current?.close();
+      ctxRef.current = null;
+      sourceCreatedRef.current = false;
+    };
+  }, []);
 }
