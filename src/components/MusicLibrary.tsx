@@ -24,7 +24,7 @@ function formatDuration(s: number) {
 }
 
 async function fetchAndParse(path: string): Promise<Track> {
-  const res = await fetch('/' + path);
+  const res = await fetch(import.meta.env.BASE_URL + path);
   const blob = await res.blob();
   const url = URL.createObjectURL(blob);
 

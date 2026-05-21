@@ -14,7 +14,7 @@ function AppContent() {
   const { liked } = useFavorites();
 
   useEffect(() => {
-    fetch('/music-manifest.json')
+    fetch(import.meta.env.BASE_URL + 'music-manifest.json')
       .then(res => res.json())
       .then(data => {
         let pls = data.playlists || [];
