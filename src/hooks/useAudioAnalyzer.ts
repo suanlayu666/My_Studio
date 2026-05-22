@@ -3,7 +3,7 @@ import { useAudio } from '../context/AudioContext';
 import type { AudioData } from '../types';
 
 const FFT_SIZE = 256;
-const SMOOTHING = 0.55;
+const SMOOTHING = 0.7;
 
 interface AnalyzerInput {
   audioEl: HTMLAudioElement | null;
@@ -32,7 +32,7 @@ export function useAudioAnalyzer({ audioEl, isPlaying }: AnalyzerInput) {
       ctx = new AudioContext();
       analyser = ctx.createAnalyser();
       analyser.fftSize = FFT_SIZE;
-      analyser.smoothingTimeConstant = 0.5;
+      analyser.smoothingTimeConstant = 0.3;
       source = ctx.createMediaElementSource(audioEl);
     } catch {
       // Source already connected (StrictMode or hot reload). Reuse from refs.

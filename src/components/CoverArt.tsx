@@ -17,11 +17,13 @@ export default function CoverArt() {
   const rotationSpeed = 0.6 + treble * 0.6;
   const coverGlow = 0.08 + amplitude * 0.5;
 
-  const h1 = 8 + bass * 44;
-  const h2 = 8 + mid * 40;
-  const h3 = 8 + treble * 44;
-  const h4 = 8 + (mid + amplitude) * 20;
-  const h5 = 8 + bass * 38;
+  // Bar heights: CSS base + audio modulation
+  const h1 = 12 + bass * 40;
+  const h2 = 12 + mid * 36;
+  const h3 = 12 + treble * 40;
+  const h4 = 12 + (mid + amplitude) * 18;
+  const h5 = 12 + bass * 34;
+
 
   const [g1, g2, g3] = colors.coverGradient;
   const coverBg = currentTrack?.cover
@@ -87,6 +89,7 @@ export default function CoverArt() {
                 <div key={i} className="flex flex-col items-center gap-1">
                   <div style={{
                     width: 5, borderRadius: '2px 2px 0 0',
+                    minHeight: 8,
                     height: h,
                     background: `linear-gradient(to top, #1db954, rgba(29,185,84,0.3))`,
                     boxShadow: `0 0 6px rgba(29,185,84,0.4)`,

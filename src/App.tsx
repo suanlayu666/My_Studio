@@ -18,16 +18,12 @@ function AppContent() {
       .then(res => res.json())
       .then(data => {
         let pls = data.playlists || [];
-
-        // Always show favorites playlist
         pls = [...pls, {
           name: '💚 我喜欢的',
           path: '__favorites__',
           tracks: liked.map(t => ({ name: t.title, path: t.path })),
         }];
-
         setPlaylists(pls);
-
         if (!restored.current && pls.length > 0) {
           const lastName = localStorage.getItem('my-studio-last-playlist');
           if (lastName) {
@@ -42,17 +38,10 @@ function AppContent() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-2 p-4" style={{ background: '#0a0a0a' }}>
-      <PlayerContainer
-        playlists={playlists}
-        autoPlaylist={autoPlaylist}
-        onAutoRestored={() => setAutoPlaylist(null)}
-      />
+      <PlayerContainer playlists={playlists} autoPlaylist={autoPlaylist} onAutoRestored={() => setAutoPlaylist(null)} />
       {(isInstallable && !isStandalone) && (
-        <button
-          onClick={install}
-          className="px-4 py-2 rounded-lg text-sm font-bold transition-all hover:scale-105"
-          style={{ background: '#1db954', color: '#0a0a0a' }}
-        >
+        <button onClick={install} className="px-4 py-2 rounded-lg text-sm font-bold transition-all hover:scale-105"
+          style={{ background: '#1db954', color: '#0a0a0a' }}>
           安装为桌面应用
         </button>
       )}

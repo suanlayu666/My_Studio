@@ -21,8 +21,8 @@ import type { SavedPlaylistEntry } from '../hooks/useMusicLibrary';
 
 interface Props {
   playlists: Playlist[];
-  autoPlaylist: Playlist | null;
-  onAutoRestored: () => void;
+  autoPlaylist?: Playlist | null;
+  onAutoRestored?: () => void;
 }
 
 export default function PlayerContainer({ playlists, autoPlaylist, onAutoRestored }: Props) {
@@ -87,8 +87,8 @@ export default function PlayerContainer({ playlists, autoPlaylist, onAutoRestore
         <div className="w-[280px] h-full overflow-y-auto hide-scrollbar border-r flex-shrink-0" style={{ borderColor: colors.border, background: colors.bg }}>
           <MusicLibrary
             playlists={playlists}
-            autoPlaylist={autoPlaylist}
-            onAutoRestored={onAutoRestored}
+            autoPlaylist={autoPlaylist || null}
+            onAutoRestored={onAutoRestored || (() => {})}
             embedded
           />
         </div>

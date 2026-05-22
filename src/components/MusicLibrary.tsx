@@ -12,7 +12,7 @@ export interface ManifestTrack {
 
 export interface Playlist {
   name: string;
-  path: string;
+  path?: string;
   tracks: ManifestTrack[];
 }
 
